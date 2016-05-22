@@ -1,0 +1,4 @@
+.deploy/
+bin/
+obj/
+project.lock.json
