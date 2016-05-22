@@ -1,3 +1,17 @@
+into:
+1:
+-dotnet cli
+-dotnet core vs .net framework
+
+2:
+-visual studio, xproj filer
+-visual studio : dotnet run, dotnet restore skjer automatisk
+-kestrel, iis osv
+
+
+
+
+
 Forutsetninger
 =======
 
@@ -8,6 +22,8 @@ Workshopen er laget for Windows, men hvis du vil gjøre den på Linux, OS X elle
 
 
 ## Del 1 - donet klienten
+Til disse oppgavene anbefales det å bruke en lettvekts-editor som feks Atmo, Visual Studio Code, e.l.
+
 ### 1a - Core App
 * Gå inn i mappen 1a og lag en ny .NET-applikasjon med `dotnet new`
 * Last ned dependencies fra nuget med `dotnet restore`
@@ -33,9 +49,17 @@ Workshopen er laget for Windows, men hvis du vil gjøre den på Linux, OS X elle
 ### 1c Testprosjekt
 * Gå inn i mappen 1c og opprett et nytt prosjekt med `dotnet new`
 * Slett Program.cs og fjern "emitEntryPoint" fra project.json
-* Legg til xUnit og xUnit Testrunner som dependencies/testrunner, tillegg til "portable-net45+win8" under imports (xUnit krever dette):
+* Legg til xUnit og xUnit Testrunner som dependencies/testrunner, i tillegg til "portable-net45+win8" under imports (xUnit krever dette) - [slik](https://github.com/severisv/dotnet-core-intro/blob/master/1c/project.json)
 * Lag en ny klasse som heter HelloWorld.cs og inneholder en metode `Get()` som returnerer "Hello World!"
 * Lag en testklasse som heter HelloWorldTests og importer xUnit `using Xunit;`
 * Lag en testmetode som tester HelloWorld.cs og annoter denne med `[Fact]`
 * Restore nuget-pakker
 * Kjør testen med `dotnet test`
+
+
+## Web app
+Til disse oppgavene er det lettest å bruke Visual Studio
+
+### 2a
+* Åpne Visual Studio og velg new -> project. Velg Console Application og legg det i mappa 2a.
+* Legg til Kestrel som en dependency i `project.json`
