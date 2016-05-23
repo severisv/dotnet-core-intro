@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace _2a
+namespace OppgaveTo
 {
     public class Startup
     {
@@ -12,6 +12,5 @@ namespace _2a
                 await context.Response.WriteAsync("Hello World!");
             });
         }
-
     }
 }

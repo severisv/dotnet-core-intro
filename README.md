@@ -7,7 +7,7 @@ into:
 -visual studio, xproj filer
 -visual studio : dotnet run, dotnet restore skjer automatisk
 -kestrel, iis osv
-
+-configuration, miljøer
 
 
 
@@ -67,3 +67,29 @@ Til disse oppgavene er det lettest å bruke Visual Studio
 **Bruk Kestrel til å lage en web app som svarer med "Hello World!"**
 * Åpne Visual Studio og velg new -> project. Velg Console Application og legg det i mappa 2.
 * Legg til Kestrel som en dependency i `project.json`
+* Lag en ny klasse `Startup.cs` med en metode `void Configure(IApplicationBuilder app)`
+* Bruk `app.Run` til å skrive "Hello World!" til HttpResponse
+* Konfigurer `Program.cs` til å kjøre en Kestrel-server med 'Startup.cs` som oppstartsfil
+* Kjør appen fra kommandolinja
+
+### 2b
+**Flytt funksjonaliteten som skriver "Hello World!" til en egen klasse med et eget interface.
+Bruk den innebygde funksjonaliteten for dependency injection for å resolve klassen og skrive ut HelloWorld**
+
+
+### 2c
+**Lag en Mock-versjon av klassen du lagde i forrige oppgave som arver av samme interface, men skriver ut "Hello Mock!". Bruk `IHostingEnvironment` til å sjekke hvilket miljø du er i,
+og registrer Mock-utgaven dersom det er `Development` og  den ekte utgaven ellers.**
+
+### 2d
+**Fjern registreringen fra forrige oppgave, slik at du ikke lenger bruker Mock-klassen.
+Lagre "Hello World!" i `appsettings.production.json` og "Hello Mock!" i appsettings.development.json.
+Lag en POCO som holder på streng-verdien og registrer denne som en Configuration-verdi.
+Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
+
+## MVC
+### 3a
+** Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
+
+### 3b
+** Fri lek **

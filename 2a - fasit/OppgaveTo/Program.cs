@@ -4,20 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-
-namespace _2a
+namespace OppgaveTo
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var webhost = new WebHostBuilder()
-                .UseKestrel()
-                .UseStartup<Startup>()
-                .Build();
+            var host = new WebHostBuilder()
+               .UseKestrel()
+               .UseStartup<Startup>()
+               .Build();
 
-            webhost.Run();
-
+            host.Run();
         }
     }
 }
