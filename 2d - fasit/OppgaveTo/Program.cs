@@ -1,5 +1,4 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace OppgaveTo
@@ -9,6 +8,7 @@ namespace OppgaveTo
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+               .UseContentRoot(Directory.GetCurrentDirectory())
                .UseKestrel()
                .UseStartup<Startup>()
                .Build();

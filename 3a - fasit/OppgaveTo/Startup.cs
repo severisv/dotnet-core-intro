@@ -16,19 +16,25 @@ namespace OppgaveTo
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
             Configuration = builder.Build();
-
     }
 
         public void ConfigureServices(IServiceCollection services)
         {
-                services.AddTransient<IHelloWorld, HelloWorld>();
+            services.AddTransient<IHelloWorld, HelloWorld>();
+            services.Configure<HelloOptions>(Configuration.GetSection("Hello:World"));
+
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
+
+            app.UseMvc();
+
             app.Run(async (context) =>
             {
                 var helloWorld = context.RequestServices.GetService<IHelloWorld>();

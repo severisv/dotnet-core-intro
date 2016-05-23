@@ -90,6 +90,23 @@ Lagre "Hello World!" i `appsettings.production.json` og "Hello Mock!" i appsetti
 Lag en POCO som holder på streng-verdien og registrer denne som en Configuration-verdi.
 Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
 
+
+  var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            Configuration = builder.Build();
+
+               .UseContentRoot(Directory.GetCurrentDirectory())
+
+
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final"
+
+### 2e
+**Legg til HelloMessage-variablen som en environment variable. Konfigurer appen til å lese env-variabler etter den har lest appsettings. Bruk dette til å legge inn en annen melding**
+
 ## MVC
 ### 3a
 ** Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
