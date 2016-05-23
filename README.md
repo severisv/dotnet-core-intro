@@ -38,7 +38,7 @@ Til disse oppgavene anbefales det å bruke en lettvekts-editor som feks Atmo, Vi
 **Lag et tesprosjekt. Bruk et testrammeverk, feks xUnit, til å lage en test. Kjør testen med `dotnet`**
 * Gå inn i mappen 1c og opprett et nytt prosjekt med `dotnet new`
 * Slett Program.cs og fjern "emitEntryPoint" fra project.json
-* Legg til xUnit og xUnit Testrunner som dependencies/testrunner, i tillegg til "portable-net45+win8" under imports (xUnit krever dette) - [slik](https://github.com/severisv/dotnet-core-intro/blob/master/1c/project.json)
+* Legg til xUnit og xUnit Testrunner som dependencies/testrunner, i tillegg til "portable-net45+win8" under imports (xUnit krever dette) - [slik](https://github.com/severisv/dotnet-core-intro/blob/master/1c%20-%20fasit/project.json)
 * Lag en ny klasse som heter HelloWorld.cs og inneholder en metode `Get()` som returnerer "Hello World!"
 * Lag en testklasse som heter HelloWorldTests og importer xUnit `using Xunit;`
 * Lag en testmetode som tester HelloWorld.cs og annoter denne med `[Fact]`
