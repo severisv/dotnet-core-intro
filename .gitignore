@@ -1,5 +1,8 @@
 .deploy/
 bin/
 obj/
-project.lock.json
+1a/project.lock.json
+1b/project.lock.json
+1c/project.lock.json
+
 .vs/
