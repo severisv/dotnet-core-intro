@@ -108,7 +108,7 @@ Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
 
 ## MVC
 ### 3a
-** Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
+**Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
 *  "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final"
 * `services.AddMvc();`
 * `services.app.UseMvc();`
@@ -117,4 +117,4 @@ Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
 * Test at det funker
 
 ### 3b
-** Fri lek **
+**Fri lek**
