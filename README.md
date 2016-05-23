@@ -8,8 +8,8 @@ into:
 -visual studio : dotnet run, dotnet restore skjer automatisk
 -kestrel, iis osv
 -configuration, miljøer
-
-
+-dependency injection
+-hot reloading / no more in-mem compiliation / iis express vs kestrel / dnx watch
 
 
 Forutsetninger
@@ -70,12 +70,15 @@ Til disse oppgavene er det lettest å bruke Visual Studio
 * Lag en ny klasse `Startup.cs` med en metode `void Configure(IApplicationBuilder app)`
 * Bruk `app.Run` til å skrive "Hello World!" til HttpResponse
 * Konfigurer `Program.cs` til å kjøre en Kestrel-server med 'Startup.cs` som oppstartsfil
-* Kjør appen fra kommandolinja
+* Kjør appen fra kommandolinja og test at det funker
 
 ### 2b
 **Flytt funksjonaliteten som skriver "Hello World!" til en egen klasse med et eget interface.
 Bruk den innebygde funksjonaliteten for dependency injection for å resolve klassen og skrive ut HelloWorld**
-
+* Lag en ny klasse og et nytt interface med en metode `Task Write(HttpContext context)` som skriver til responsen
+* Lag en ny metode `public void ConfigureServices(IServiceCollection services)` i `Startup.cs` hvor du registrerer den nye klassen til interfacet
+* Skriv om `void Configure(IApplicationBuilder app)`-metoden i `Startup.cs` til å resolve ut klassen og printe med den. ( feks `var helloWorld = context.RequestServices.GetService<IHelloWorld>();` )
+* Kjør appen fra kommandolinja og test at det funker
 
 ### 2c
 **Lag en Mock-versjon av klassen du lagde i forrige oppgave som arver av samme interface, men skriver ut "Hello Mock!". Bruk `IHostingEnvironment` til å sjekke hvilket miljø du er i,

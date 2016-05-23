@@ -1,30 +1,30 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace OppgaveTo
 {
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; }
+        private readonly IHostingEnvironment _env;
 
 
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            Configuration = builder.Build();
-
-    }
+            _env = env;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            if (_env.IsDevelopment())
+            {
+                services.AddTransient<IHelloWorld, HelloWorldMock>();
+            }
+            else
+            {
                 services.AddTransient<IHelloWorld, HelloWorld>();
+            }
         }
 
         public void Configure(IApplicationBuilder app)
