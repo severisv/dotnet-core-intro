@@ -111,7 +111,7 @@ Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
 **Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
 *  "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final"
 * `services.AddMvc();`
-* `services.app.UseMvc();`
+* `app.UseMvc();`
 * Lag en mappe Controllers og lag en Controller med en Action
 * Husk å dekorere med `[Route("hello")]`
 * Test at det funker
