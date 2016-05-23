@@ -1,17 +1,3 @@
-into:
-1:
--dotnet cli
--dotnet core vs .net framework
-
-2:
--visual studio, xproj filer
--visual studio : dotnet run, dotnet restore skjer automatisk
--kestrel, iis osv
--configuration, miljøer
--dependency injection
--hot reloading / no more in-mem compiliation / iis express vs kestrel / dnx watch
-
-
 Forutsetninger
 =======
 
@@ -83,6 +69,12 @@ Bruk den innebygde funksjonaliteten for dependency injection for å resolve klas
 ### 2c
 **Lag en Mock-versjon av klassen du lagde i forrige oppgave som arver av samme interface, men skriver ut "Hello Mock!". Bruk `IHostingEnvironment` til å sjekke hvilket miljø du er i,
 og registrer Mock-utgaven dersom det er `Development` og  den ekte utgaven ellers.**
+* Lag en ny property `private IHostingEnvironment _env;` på `Startup.cs`
+* Lag en ny metode `public Startup(IHostingEnvironment env)` på `Startup.cs` hvor du binder `env` til `_env`
+* Sjekk hvilket miljø som er aktivt i `ConfigureServices` og registrer Mock eller vanlig deretter.
+* Kjør applikasjonen fra kommandolinja
+* I kommandolinja, skriv `set ASPNETCORE_ENVIRONMENT=Production`
+* Kjør på nytt, og se at riktig konfigurasjon benyttes
 
 ### 2d
 **Fjern registreringen fra forrige oppgave, slik at du ikke lenger bruker Mock-klassen.
@@ -90,26 +82,39 @@ Lagre "Hello World!" i `appsettings.production.json` og "Hello Mock!" i appsetti
 Lag en POCO som holder på streng-verdien og registrer denne som en Configuration-verdi.
 Verifiser at verdien er forskjellig når du endrer miljø-variabelen**
 
-
-  var builder = new ConfigurationBuilder()
+* Legg til ny dependencies i `project.json`: "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final", "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final"
+* Opprett konfigfiler; appsettings.json, appsettings.production.json og appsettings.development.json
+* I `Program.cs`, legg til `.UseContentRoot(Directory.GetCurrentDirectory())` på webhostBuilder slik at appen kan lese filer fra prosjektmappa.
+* Opprett en ny property på `Startup.cs` - `public IConfigurationRoot Configuration`
+* Sett opp appen til å lese appsettings i Startup-metoden i `Startup.cs` -
+  `var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
-            Configuration = builder.Build();
-
-               .UseContentRoot(Directory.GetCurrentDirectory())
-
-
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final"
+            Configuration = builder.Build();`
+* Lag en ny POCO-klasse som heter feks `HelloOptions.cs` med en string-property som heter det samme som en verdi du legger i appsettings.
+* I ConfigureServices-metoden, registrer denne klassen slik `services.Configure<HelloOptions>(Configuration);`
+* I klassen som printer "Hello World", ta inn `IOptions<HelloOptions> options` i konstruktøren, og print denne meldingen til HttpResponse
+* Kjør appen fra kommandolinja og verifiser at det funker
+* Bytt environment og sjekk at riktig config brukes
 
 ### 2e
 **Legg til HelloMessage-variablen som en environment variable. Konfigurer appen til å lese env-variabler etter den har lest appsettings. Bruk dette til å legge inn en annen melding**
+* Legg til avhengigheten `"Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final"`
+* I `Startup.Startup()`, legg til `.AddEnvironmentVariables();` etter `AddJsonFile()`
+* Set environment variablen for HelloMessage - `set HelloMessage=Hello world from env-variables`
+* Kjør på nytt og se at det virker
 
 ## MVC
 ### 3a
 ** Legg til MVC og lag en Controller og en Action som sender ut noen verdier**
+*  "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final"
+* `services.AddMvc();`
+* `services.app.UseMvc();`
+* Lag en mappe Controllers og lag en Controller med en Action
+* Husk å dekorere med `[Route("hello")]`
+* Test at det funker
 
 ### 3b
 ** Fri lek **
