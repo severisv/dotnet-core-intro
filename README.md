@@ -8,7 +8,7 @@ Workshopen er laget for Windows, men hvis du vil gjøre den på Linux, OS X elle
 
 
 ## Del 1 - donet klienten
-Til disse oppgavene anbefales det å bruke en lettvekts-editor som feks Atmo, Visual Studio Code, e.l.
+Til disse oppgavene anbefales det å bruke en lettvekts-editor som feks Atom, Visual Studio Code, e.l.
 
 ### 1a - Core App
 **Bruk kommandolinjeverktøyet `dotnet` til å lage en ny console-applikasjon og kjør denne. Publiser den og kjør den publiserte DLL'en.**
